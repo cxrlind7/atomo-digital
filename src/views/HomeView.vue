@@ -124,7 +124,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  /* gap: 2rem; */
+  padding-bottom: 0rem;
 }
 
 .hero-text h1 {
