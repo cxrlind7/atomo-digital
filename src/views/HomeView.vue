@@ -11,6 +11,9 @@
         <div class="hero-graphic">
           <img src="../../public/sphere-removebg-preview.png" alt="Esfera tecnológica abstracta">
         </div>
+        <a href="#servicios" class="scroll-down-indicator" aria-label="Ir a servicios">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </a>
       </div>
     </section>
 
@@ -330,5 +333,46 @@ export default {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(170, 76, 227, 0.4);
 }
+.scroll-down-indicator {
+  display: none;
+}
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: start;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.9rem;
+  }
 
+  .hero-graphic img {
+    display: none;
+    width: 300px;
+  }
+
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+   .scroll-down-indicator {
+    display: block;
+    padding-top: 0rem;
+    color: #555;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+    
+}
 </style>
