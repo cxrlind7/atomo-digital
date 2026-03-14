@@ -1,6 +1,6 @@
 <template>
-    <NavBar :isHomePage="true" />
-    <main class="home-content">
+  <NavBar :isHomePage="true" />
+  <main class="home-content">
 
     <section id="inicio" class="hero-section">
       <div class="hero-container">
@@ -12,7 +12,10 @@
           <img src="../../public/sphere-removebg-preview.png" alt="Esfera tecnológica abstracta">
         </div>
         <a href="#servicios" class="scroll-down-indicator" aria-label="Ir a servicios">
-            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
         </a>
       </div>
     </section>
@@ -35,15 +38,15 @@
     <section class="hero-section cta-section">
       <div class="section-container">
         <h2>Impulsa tu Presencia Digital</h2>
-        <a href="/cotiza" class="cta-button">
+        <router-link to="/cotiza" class="cta-button">
           Cotiza tu Proyecto
-        </a>
+        </router-link>
       </div>
     </section>
 
   </main>
 
-    <Footer />
+  <Footer />
 </template>
 
 
@@ -83,7 +86,7 @@ export default {
         },
       ]
     };
-}
+  }
 };
 </script>
 
@@ -95,12 +98,15 @@ export default {
 
 .home-content {
   font-family: 'Poppins', sans-serif;
-  background-color: #f8f9fa; /* Gris muy claro */
-  padding-top: 80px; /* Espacio para el navbar fijo */
+  background-color: #f8f9fa;
+  /* Gris muy claro */
+  padding-top: 80px;
+  /* Espacio para el navbar fijo */
 }
 
 /* Contenedor general para centrar el contenido */
-.section-container, .hero-container {
+.section-container,
+.hero-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
@@ -111,6 +117,7 @@ export default {
   font-size: 2.2rem;
   margin-bottom: 2rem;
 }
+
 /* --- 1. Estilos de la Sección HERO --- */
 .hero-section {
   background-color: #f8f9fa;
@@ -151,12 +158,12 @@ export default {
   justify-content: center;
   align-items: center;
   /* Añadimos un poco de espacio inferior para que la sombra no se corte */
-  padding-bottom: 50px; 
+  padding-bottom: 50px;
 }
 
 /* Imagen de la esfera */
 .hero-graphic img {
-  width: 450px; 
+  width: 450px;
   height: auto;
   animation: float 6s ease-in-out infinite;
   z-index: 2;
@@ -167,25 +174,36 @@ export default {
   content: '';
   position: absolute;
   /* CAMBIO: Desplaza la sombra mucho más abajo */
-  bottom: 0px; 
+  bottom: 0px;
   left: 50%;
-  width: 60%; 
+  width: 60%;
   height: 30px;
-  background: rgba(45, 55, 72, .8); /* Hacemos la sombra más sutil */
+  background: rgba(45, 55, 72, .8);
+  /* Hacemos la sombra más sutil */
   border-radius: 50%;
-  filter: blur(20px); /* Aumentamos el desenfoque */
+  filter: blur(20px);
+  /* Aumentamos el desenfoque */
   transform: translateX(-50%);
   z-index: 1;
-  
+
   /* La animación controla el tamaño y la opacidad */
   animation: float-shadow 6s ease-in-out infinite;
 }
 
 /* Animación para que la esfera flote */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-30px); } /* Aumentamos la distancia del flote */
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+
+  /* Aumentamos la distancia del flote */
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* CAMBIO CLAVE: Animación de la sombra actualizada */
@@ -195,11 +213,13 @@ export default {
     transform: translateX(-50%) scale(1);
     opacity: 0.6;
   }
+
   50% {
     /* Mitad: esfera arriba, sombra pequeña y tenue */
     transform: translateX(-50%) scale(0.7);
     opacity: 0.3;
   }
+
   100% {
     /* Final: vuelve al estado inicial */
     transform: translateX(-50%) scale(1);
@@ -219,7 +239,8 @@ export default {
   font-weight: 600;
   color: #333;
   margin-bottom: 3rem;
-  text-align: left; /* Como en la imagen */
+  text-align: left;
+  /* Como en la imagen */
 }
 
 .services-grid {
@@ -241,8 +262,9 @@ export default {
 
   /* --- CAMBIOS CLAVE --- */
   /* 1. Establece un ancho fijo y estricto para todas las tarjetas */
-  width: 320px; /* Puedes ajustar este valor si lo necesitas */
-  
+  width: 320px;
+  /* Puedes ajustar este valor si lo necesitas */
+
   /* 2. Se eliminan 'flex-basis' y 'flex-grow' */
 }
 
@@ -260,7 +282,8 @@ export default {
   align-items: center;
   justify-content: center;
   position: relative;
-  background: linear-gradient(145deg, #ff70431a, #4a90e21a); /* Fondo sutil */
+  background: linear-gradient(145deg, #ff70431a, #4a90e21a);
+  /* Fondo sutil */
 }
 
 .service-icon::before {
@@ -268,7 +291,8 @@ export default {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  padding: 3px; /* Grosor del borde */
+  padding: 3px;
+  /* Grosor del borde */
   background: conic-gradient(from 150deg, #ff7043, #aa4ce3, #4a90e2, #50E3C2, #ff7043);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -311,7 +335,17 @@ export default {
 }
 
 /* Reutilización de los estilos del botón */
-@keyframes move-gradient-button { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes move-gradient-button {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
 
 .cta-button {
   padding: 0.85rem 2rem;
@@ -334,15 +368,17 @@ export default {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(170, 76, 227, 0.4);
 }
+
 .scroll-down-indicator {
   display: none;
 }
+
 @media (max-width: 768px) {
   .hero-container {
     flex-direction: column;
     text-align: start;
   }
-  
+
   .hero-text h1 {
     font-size: 2.9rem;
   }
@@ -356,7 +392,8 @@ export default {
     flex-direction: column;
     align-items: center;
   }
-   .scroll-down-indicator {
+
+  .scroll-down-indicator {
     display: block;
     padding-top: 0rem;
     color: #555;
@@ -364,16 +401,23 @@ export default {
   }
 
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
       transform: translateY(0);
     }
+
     40% {
       transform: translateY(-10px);
     }
+
     60% {
       transform: translateY(-5px);
     }
   }
-    
+
 }
 </style>
