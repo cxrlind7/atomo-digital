@@ -110,7 +110,7 @@ export default {
                     // twitter: null
                 },
                 {
-                    name: 'Carlos Aldaba',
+                    name: 'Carlos Aldaba Estrada',
                     role: 'Desarrollador Full-Stack',
                     bio: 'Ingeniero en Tecnologías de la Información y Comunicaciones con más de 4 años de experiencia en el desarrollo de software. Apasionado por la arquitectura de software y las experiencias de usuario fluidas.',
                     photo: 'carlos-bio.png',
