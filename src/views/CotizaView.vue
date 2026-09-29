@@ -36,7 +36,7 @@
                         </div>
                         <h3>¿Prefieres hablar directamente?</h3>
                         <p>Escríbenos por WhatsApp y respondemos de inmediato.</p>
-                        <a href="https://wa.me/526181890928?text=Hola%2C%20quisiera%20cotizar%20mi%20proyecto%20digital."
+                        <a href="https://wa.me/526181553344?text=Hola%2C%20quisiera%20cotizar%20mi%20proyecto%20digital."
                             target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
                             <i class="bi bi-whatsapp"></i>
                             Cotiza por WhatsApp
@@ -54,32 +54,26 @@
                                 <input id="name" v-model="form.name" type="text" placeholder="Tu nombre" required />
                             </div>
                             <div class="form-group">
-                                <label for="email">Correo electrónico *</label>
-                                <input id="email" v-model="form.email" type="email" placeholder="tu@correo.com"
-                                    required />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
                                 <label for="phone">Teléfono / WhatsApp</label>
                                 <input id="phone" v-model="form.phone" type="tel" placeholder="+52 618 000 0000" />
                             </div>
-                            <div class="form-group">
-                                <label for="company">Empresa / Negocio</label>
-                                <input id="company" v-model="form.company" type="text"
-                                    placeholder="Tu empresa (opcional)" />
-                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Empresa / Negocio</label>
+                            <input id="company" v-model="form.company" type="text"
+                                placeholder="Tu empresa (opcional)" />
                         </div>
 
                         <div class="form-group">
                             <label>Tipo de servicio *</label>
                             <div class="services-chips">
                                 <button type="button" v-for="s in serviceOptions" :key="s" class="chip"
-                                    :class="{ active: form.service === s }" @click="form.service = s">
+                                    :class="{ active: form.service === s }" @click="form.service = s; serviceError = false">
                                     {{ s }}
                                 </button>
                             </div>
+                            <p v-if="serviceError" class="field-error">Selecciona el tipo de servicio.</p>
                         </div>
 
                         <div class="form-group">
@@ -99,17 +93,21 @@
                                 required></textarea>
                         </div>
 
-                        <button type="submit" class="submit-btn" :class="{ sent: formSent }">
-                            <i class="bi bi-send-fill"></i>
-                            Enviar solicitud
+                        <button type="submit" class="submit-btn">
+                            <i class="bi bi-whatsapp"></i>
+                            Enviar por WhatsApp
                         </button>
                     </form>
 
                     <div v-else class="success-message">
                         <i class="bi bi-check-circle-fill"></i>
                         <h2>¡Gracias por tu solicitud!</h2>
-                        <p>Hemos abierto tu aplicación de correo predeterminada para que nos envíes los detalles de tu
-                            proyecto.</p>
+                        <p>Abrimos WhatsApp con los datos de tu proyecto listos. Solo presiona <strong>enviar</strong>
+                            en el chat y te haremos llegar tu cotización.</p>
+                        <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="submit-btn">
+                            <i class="bi bi-whatsapp"></i>
+                            ¿No se abrió? Abrir WhatsApp
+                        </a>
                         <!-- <button class="submit-btn" @click="formSent = false">
                             <i class="bi bi-arrow-left-circle-fill"></i>
                             Enviar nueva solicitud
@@ -134,9 +132,10 @@ export default {
     data() {
         return {
             formSent: false,
+            serviceError: false,
+            whatsappUrl: '',
             form: {
                 name: '',
-                email: '',
                 phone: '',
                 company: '',
                 service: '',
@@ -155,23 +154,33 @@ export default {
     },
     methods: {
         handleSubmit() {
-            const { name, email, phone, company, service, budget, details } = this.form;
-            const subject = `Solicitud de cotización – ${service || 'Proyecto digital'}`;
-            const body = `Nombre: ${name}%0AEmail: ${email}%0ATel%C3%A9fono: ${phone}%0AEmpresa: ${company}%0AServicio: ${service}%0APresupuesto: ${budget}%0A%0ADescripci%C3%B3n:%0A${details}`;
+            const { name, phone, company, service, budget, details } = this.form;
+            if (!service) {
+                this.serviceError = true;
+                return;
+            }
 
-            const mailtoUrl = `mailto:olizeth527@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-            const link = document.createElement('a');
-            link.href = mailtoUrl;
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const lines = [
+                '¡Hola! Quiero cotizar un proyecto.',
+                '',
+                `*Nombre:* ${name}`,
+                phone ? `*Teléfono:* ${phone}` : null,
+                company ? `*Empresa:* ${company}` : null,
+                `*Servicio:* ${service}`,
+                budget ? `*Presupuesto:* ${budget}` : null,
+                '',
+                '*Descripción:*',
+                details
+            ].filter(line => line !== null);
+
+            this.whatsappUrl = `https://wa.me/526181553344?text=${encodeURIComponent(lines.join('\n'))}`;
+            window.open(this.whatsappUrl, '_blank', 'noopener');
 
             this.formSent = true;
 
             // Clean up form values (optional, so if they go back it's fresh)
             this.form = {
-                name: '', email: '', phone: '', company: '', service: '', budget: '', details: ''
+                name: '', phone: '', company: '', service: '', budget: '', details: ''
             };
         }
     }
@@ -460,6 +469,12 @@ export default {
     color: white;
 }
 
+.field-error {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    color: #e53935;
+}
+
 /* Budget */
 .budget-options {
     display: flex;
@@ -503,6 +518,7 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.05rem;
+    text-decoration: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;

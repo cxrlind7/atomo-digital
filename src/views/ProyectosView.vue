@@ -18,8 +18,8 @@
                     <div v-for="(project, index) in projects" :key="project.title" class="project-card">
                         <div class="project-image-wrapper">
                             <img v-if="!failedPreviews.includes(project.title)" :src="project.preview"
-                                :alt="'Vista previa de ' + project.title" class="project-preview" width="1280"
-                                height="800" :loading="index < 2 ? 'eager' : 'lazy'" decoding="async"
+                                :alt="'Vista previa de ' + project.title" class="project-preview" width="960"
+                                height="600" :loading="index < 2 ? 'eager' : 'lazy'" decoding="async"
                                 @error="failedPreviews.push(project.title)" />
                             <div v-else class="project-fallback">
                                 <span>{{ project.title }}</span>
@@ -72,31 +72,31 @@ export default {
             projects: [
                 {
                     title: 'Crianza Sana by DKids',
-                    description: 'Plataforma web para padres y educadores enfocada en crianza consciente y desarrollo infantil saludable.',
+                    description: 'Plataforma para padres con un equipo de especialistas en salud infantil, blog, programas de crianza y suscripción a novedades por correo.',
                     url: 'https://crianzasanabydkids.mx/',
-                    preview: 'https://api.microlink.io/?url=https://crianzasanabydkids.mx/&screenshot=true&meta=false&embed=screenshot.url',
+                    preview: '/proyectos/crianza-sana.webp',
                     tags: ['Desarrollo Web', 'Diseño UI/UX']
                 },
                 {
                     title: 'Bravo y Asociados',
-                    description: 'Sitio web corporativo para despacho de asesoría y consultoría empresarial con presencia profesional en línea.',
+                    description: 'Sitio corporativo para despacho de servicios jurídicos y asesoría especializada, con imagen sobria y contacto directo por WhatsApp.',
                     url: 'https://www.bravoyasociados.com/',
-                    preview: 'https://api.microlink.io/?url=https://www.bravoyasociados.com/&screenshot=true&meta=false&embed=screenshot.url',
-                    tags: ['Sitio Corporativo', 'Consultoría']
+                    preview: '/proyectos/bravo-y-asociados.webp',
+                    tags: ['Sitio Corporativo', 'Despacho Jurídico']
                 },
                 {
                     title: 'Alta Norte',
-                    description: 'Sitio web profesional con diseño moderno y adaptable que presenta los servicios de la marca y facilita el contacto con nuevos clientes.',
+                    description: 'Sitio bilingüe para Reserva Alta Norte, desarrollo de ski, camping y resort: actividades, planos, lotes y agenda de recorridos.',
                     url: 'https://www.altanorte.mx/',
-                    preview: 'https://api.microlink.io/?url=https://www.altanorte.mx/&screenshot=true&meta=false&embed=screenshot.url',
-                    tags: ['Desarrollo Web', 'Sitio Corporativo']
+                    preview: '/proyectos/alta-norte.webp',
+                    tags: ['Desarrollo Web', 'Inmobiliario y Turismo']
                 },
                 {
                     title: 'Ruta Didáctica',
-                    description: 'Plataforma web educativa con recursos y contenidos didácticos pensados para apoyar el aprendizaje de docentes y estudiantes.',
+                    description: 'Plataforma para docentes de primaria con rutas de acompañamiento alineadas a la NEM 2022, biblioteca de recursos, registro de usuarios y compra en línea.',
                     url: 'https://rutadidactica.com/',
-                    preview: 'https://api.microlink.io/?url=https://rutadidactica.com/&screenshot=true&meta=false&embed=screenshot.url',
-                    tags: ['Desarrollo Web', 'Educación']
+                    preview: '/proyectos/ruta-didactica.webp',
+                    tags: ['Plataforma Web', 'Educación']
                 }
             ]
         };

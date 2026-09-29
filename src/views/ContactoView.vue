@@ -77,11 +77,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input id="email" v-model="form.email" type="email" placeholder="tu@correo.com" required />
-                        </div>
-
-                        <div class="form-group">
                             <label for="subject">Asunto</label>
                             <input id="subject" v-model="form.subject" type="text"
                                 placeholder="¿En qué podemos ayudarte?" />
@@ -93,17 +88,21 @@
                                 placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
                         </div>
 
-                        <button type="submit" class="submit-btn" :class="{ sent: formSent }">
-                            <i class="bi bi-send-fill"></i>
-                            Enviar mensaje
+                        <button type="submit" class="submit-btn">
+                            <i class="bi bi-whatsapp"></i>
+                            Enviar por WhatsApp
                         </button>
                     </form>
 
                     <div v-else class="success-message">
                         <i class="bi bi-check-circle-fill"></i>
                         <h2>¡Gracias por tu mensaje!</h2>
-                        <p>Hemos abierto tu aplicación de correo predeterminada para que nos envíes tus dudas o
-                            comentarios.</p>
+                        <p>Abrimos WhatsApp con tu mensaje listo. Solo presiona <strong>enviar</strong> en el chat y te
+                            responderemos a la brevedad.</p>
+                        <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="submit-btn">
+                            <i class="bi bi-whatsapp"></i>
+                            ¿No se abrió? Abrir WhatsApp
+                        </a>
                         <!-- <button class="submit-btn" @click="formSent = false">
                             <i class="bi bi-arrow-left-circle-fill"></i>
                             Enviar nuevo mensaje
@@ -128,9 +127,9 @@ export default {
     data() {
         return {
             formSent: false,
+            whatsappUrl: '',
             form: {
                 name: '',
-                email: '',
                 subject: '',
                 message: ''
             }
@@ -138,21 +137,23 @@ export default {
     },
     methods: {
         handleSubmit() {
-            const { name, email, subject, message } = this.form;
-            const body = `Nombre: ${name}%0AEmail: ${email}%0AAsunto: ${subject}%0A%0A${message}`;
+            const { name, subject, message } = this.form;
+            const lines = [
+                '¡Hola! Les escribo desde el sitio web.',
+                '',
+                `*Nombre:* ${name}`,
+                subject ? `*Asunto:* ${subject}` : null,
+                '',
+                message
+            ].filter(line => line !== null);
 
-            const mailtoUrl = `mailto:olizeth527@gmail.com?subject=${encodeURIComponent(subject || 'Contacto desde el sitio web')}&body=${body}`;
-            const link = document.createElement('a');
-            link.href = mailtoUrl;
-            link.target = '_blank';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            this.whatsappUrl = `https://wa.me/526181553344?text=${encodeURIComponent(lines.join('\n'))}`;
+            window.open(this.whatsappUrl, '_blank', 'noopener');
 
             this.formSent = true;
 
             this.form = {
-                name: '', email: '', subject: '', message: ''
+                name: '', subject: '', message: ''
             };
         }
     }
@@ -419,6 +420,7 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.05rem;
+    text-decoration: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
