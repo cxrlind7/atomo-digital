@@ -54,8 +54,6 @@ const closeMenu = () => {
 </script>
 
 <style scoped>
-/* Importa una fuente similar a la del diseño (opcional, pero recomendado) */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 /* Contenedor principal del header */
 .navbar-header {
@@ -349,8 +347,9 @@ const closeMenu = () => {
 }
 
 /* Animación del ícono de hamburguesa a una 'X' cuando está activo */
+/* Las líneas están separadas 9px (3px de alto + 6px de margen) */
 .hamburger.is-active .line:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
 }
 
 .hamburger.is-active .line:nth-child(2) {
@@ -358,7 +357,7 @@ const closeMenu = () => {
 }
 
 .hamburger.is-active .line:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 
@@ -377,9 +376,11 @@ const closeMenu = () => {
     /* Empieza fuera de la pantalla */
     width: 100%;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.50);
-    /* Fondo blanco con ligera transparencia */
+    height: 100dvh;
+    background-color: rgba(255, 255, 255, 0.92);
+    /* Fondo blanco casi opaco para que el texto sea legible sobre cualquier sección */
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -420,6 +421,25 @@ const closeMenu = () => {
     margin-top: 2.5rem;
     padding: 1rem 2.5rem;
     font-size: 1.2rem;
+  }
+
+  .hamburger {
+    padding: 6px;
+    margin-right: -6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-header {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
   }
 }
 </style>

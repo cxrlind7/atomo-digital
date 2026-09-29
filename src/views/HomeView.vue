@@ -9,7 +9,7 @@
           <p>Tu visión, nuestra tecnología.</p>
         </div>
         <div class="hero-graphic">
-          <img src="../../public/sphere-removebg-preview.png" alt="Esfera tecnológica abstracta">
+          <img src="/sphere.webp" alt="Esfera tecnológica abstracta" width="565" height="442" fetchpriority="high">
         </div>
         <a href="#servicios" class="scroll-down-indicator" aria-label="Ir a servicios">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
@@ -92,9 +92,6 @@ export default {
 
 
 <style scoped>
-/* Importa la fuente y los íconos si no lo haces globalmente */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .home-content {
   font-family: 'Poppins', sans-serif;
@@ -136,7 +133,7 @@ export default {
 }
 
 .hero-text h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.2;
   color: #212529;
@@ -163,7 +160,7 @@ export default {
 
 /* Imagen de la esfera */
 .hero-graphic img {
-  width: 450px;
+  width: min(450px, 38vw);
   height: auto;
   animation: float 6s ease-in-out infinite;
   z-index: 2;
@@ -262,7 +259,7 @@ export default {
 
   /* --- CAMBIOS CLAVE --- */
   /* 1. Establece un ancho fijo y estricto para todas las tarjetas */
-  width: 320px;
+  width: min(320px, 100%);
   /* Puedes ajustar este valor si lo necesitas */
 
   /* 2. Se eliminan 'flex-basis' y 'flex-grow' */
@@ -379,13 +376,27 @@ export default {
     text-align: start;
   }
 
-  .hero-text h1 {
-    font-size: 2.9rem;
+  .section-container,
+  .hero-container {
+    padding: 3rem 1.25rem;
   }
 
-  .hero-graphic img {
+  .hero-container {
+    padding-bottom: 1rem;
+  }
+
+  .section-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-graphic {
     display: none;
-    width: 300px;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem 1.5rem;
   }
 
   .services-grid {

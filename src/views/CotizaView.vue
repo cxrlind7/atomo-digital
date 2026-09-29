@@ -179,8 +179,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .page-content {
     font-family: 'Poppins', sans-serif;
@@ -539,6 +537,66 @@ export default {
 
     .page-hero h1 {
         font-size: 2.2rem;
+    }
+
+    /* En móvil el formulario va primero y los beneficios después */
+    .quote-form-wrapper {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 3rem 1.25rem 2rem;
+    }
+
+    .quote-section {
+        padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .quote-container {
+        gap: 1.5rem;
+    }
+
+    .quote-form-wrapper {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .quote-form h2,
+    .success-message h2 {
+        font-size: 1.5rem;
+    }
+
+    .quote-form h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+        gap: 0;
+    }
+
+    /* 16px evita que iOS haga zoom al enfocar el campo */
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+
+    .budget-options {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .sidebar-card,
+    .whatsapp-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-hero h1 {
+        font-size: 1.85rem;
     }
 }
 

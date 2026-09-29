@@ -36,7 +36,8 @@
                 <div class="team-grid">
                     <div v-for="member in team" :key="member.name" class="team-card">
                         <div class="member-image-wrapper">
-                            <img :src="member.photo" :alt="member.name" class="member-photo" />
+                            <img :src="member.photo" :alt="member.name" class="member-photo" width="700"
+                                height="700" loading="lazy" decoding="async" />
                             <div class="member-glow"></div>
                         </div>
                         <div class="member-info">
@@ -105,7 +106,7 @@ export default {
                     name: 'Lizeth Ortiz',
                     role: 'Directora de Marketing Digital',
                     bio: 'Estratega digital especializada en publicidad de rendimiento (performance marketing) y generación de leads. Su enfoque combina análisis de datos, estrategia de negocio y ejecución operativa en plataformas como Meta Ads, Google Ads y Optimizaciones web.',
-                    photo: "liz-bio.jpeg",
+                    photo: '/liz-bio.webp',
                     linkedin: 'https://www.linkedin.com/in/lizeth-carolina-ortiz-ruiz-378659174/',
                     // twitter: null
                 },
@@ -113,7 +114,7 @@ export default {
                     name: 'Carlos Aldaba Estrada',
                     role: 'Desarrollador Full-Stack',
                     bio: 'Ingeniero en Tecnologías de la Información y Comunicaciones con más de 4 años de experiencia en el desarrollo de software. Apasionado por la arquitectura de software y las experiencias de usuario fluidas.',
-                    photo: 'carlos-bio.png',
+                    photo: '/carlos-bio.webp',
                     linkedin: 'https://www.linkedin.com/in/carlos-thsd0111/',
                     // twitter: '#'
                 },
@@ -125,8 +126,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .page-content {
     font-family: 'Poppins', sans-serif;
@@ -289,7 +288,8 @@ export default {
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    width: 340px;
+    width: 100%;
+    max-width: 380px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -439,20 +439,50 @@ export default {
 }
 
 @media (max-width: 768px) {
+    .page-hero {
+        padding: 3rem 1.25rem 2.5rem;
+    }
+
     .page-hero h1 {
         font-size: 2.2rem;
     }
 
-    .team-container h2 {
-        font-size: 2rem;
+    .page-subtitle {
+        font-size: 1rem;
     }
 
-    .team-card {
-        width: 100%;
+    .values-section,
+    .team-section,
+    .cta-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+        gap: 1.25rem;
+    }
+
+    .team-container h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .team-grid {
+        gap: 1.5rem;
     }
 
     .member-image-wrapper {
-        height: 240px;
+        height: 300px;
+    }
+
+    .cta-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-hero h1 {
+        font-size: 1.85rem;
     }
 }
 </style>

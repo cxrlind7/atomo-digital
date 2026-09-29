@@ -160,8 +160,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .page-content {
     font-family: 'Poppins', sans-serif;
@@ -480,6 +478,51 @@ export default {
 
     .page-hero h1 {
         font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 3rem 1.25rem 2rem;
+    }
+
+    .contact-section {
+        padding: 2rem 1.25rem 4rem;
+    }
+
+    .contact-container {
+        gap: 2rem;
+    }
+
+    .contact-info h2,
+    .contact-form h2,
+    .success-message h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-form h2 {
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    /* 16px evita que iOS haga zoom al enfocar el campo */
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+
+    .info-item a {
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-hero h1 {
+        font-size: 1.85rem;
     }
 }
 </style>

@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import ProyectosView from "../views/ProyectosView.vue";
-import ServiciosView from "../views/ServiciosView.vue";
-import NosotrosView from "../views/NosotrosView.vue";
-import ContactoView from "../views/ContactoView.vue";
-import CotizaView from "../views/CotizaView.vue";
+
+// El resto de páginas se cargan bajo demanda para que la primera visita sea más ligera
+const ProyectosView = () => import("../views/ProyectosView.vue");
+const ServiciosView = () => import("../views/ServiciosView.vue");
+const NosotrosView = () => import("../views/NosotrosView.vue");
+const ContactoView = () => import("../views/ContactoView.vue");
+const CotizaView = () => import("../views/CotizaView.vue");
 
 const routes = [
   {

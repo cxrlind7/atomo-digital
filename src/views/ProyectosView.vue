@@ -15,10 +15,15 @@
             <div class="projects-container">
                 <div class="projects-grid">
 
-                    <div v-for="project in projects" :key="project.title" class="project-card">
+                    <div v-for="(project, index) in projects" :key="project.title" class="project-card">
                         <div class="project-image-wrapper">
-                            <img :src="project.preview" :alt="'Vista previa de ' + project.title"
-                                class="project-preview" />
+                            <img v-if="!failedPreviews.includes(project.title)" :src="project.preview"
+                                :alt="'Vista previa de ' + project.title" class="project-preview" width="1280"
+                                height="800" :loading="index < 2 ? 'eager' : 'lazy'" decoding="async"
+                                @error="failedPreviews.push(project.title)" />
+                            <div v-else class="project-fallback">
+                                <span>{{ project.title }}</span>
+                            </div>
                             <div class="project-overlay">
                                 <a :href="project.url" target="_blank" rel="noopener noreferrer" class="overlay-btn">
                                     <i class="bi bi-box-arrow-up-right"></i>
@@ -63,6 +68,7 @@ export default {
     components: { NavBar, Footer },
     data() {
         return {
+            failedPreviews: [],
             projects: [
                 {
                     title: 'Crianza Sana by DKids',
@@ -77,6 +83,20 @@ export default {
                     url: 'https://www.bravoyasociados.com/',
                     preview: 'https://api.microlink.io/?url=https://www.bravoyasociados.com/&screenshot=true&meta=false&embed=screenshot.url',
                     tags: ['Sitio Corporativo', 'Consultoría']
+                },
+                {
+                    title: 'Alta Norte',
+                    description: 'Sitio web profesional con diseño moderno y adaptable que presenta los servicios de la marca y facilita el contacto con nuevos clientes.',
+                    url: 'https://www.altanorte.mx/',
+                    preview: 'https://api.microlink.io/?url=https://www.altanorte.mx/&screenshot=true&meta=false&embed=screenshot.url',
+                    tags: ['Desarrollo Web', 'Sitio Corporativo']
+                },
+                {
+                    title: 'Ruta Didáctica',
+                    description: 'Plataforma web educativa con recursos y contenidos didácticos pensados para apoyar el aprendizaje de docentes y estudiantes.',
+                    url: 'https://rutadidactica.com/',
+                    preview: 'https://api.microlink.io/?url=https://rutadidactica.com/&screenshot=true&meta=false&embed=screenshot.url',
+                    tags: ['Desarrollo Web', 'Educación']
                 }
             ]
         };
@@ -85,8 +105,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .page-content {
     font-family: 'Poppins', sans-serif;
@@ -153,7 +171,7 @@ export default {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
     gap: 2.5rem;
 }
 
@@ -173,16 +191,31 @@ export default {
 .project-image-wrapper {
     position: relative;
     overflow: hidden;
-    height: 280px;
+    aspect-ratio: 16 / 10;
     background: #e9ecef;
 }
 
 .project-preview {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
     transition: transform 0.4s ease;
+}
+
+.project-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, #ff7043, #aa4ce3, #4a90e2);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .project-card:hover .project-preview {
@@ -335,17 +368,58 @@ export default {
     box-shadow: 0 6px 20px rgba(170, 76, 227, 0.4);
 }
 
+/* En pantallas táctiles no hay hover: se oculta el overlay y se usa el enlace de la tarjeta */
+@media (hover: none) {
+    .project-overlay {
+        display: none;
+    }
+
+    .project-card:hover {
+        transform: none;
+    }
+
+    .project-card:hover .project-preview {
+        transform: none;
+    }
+}
+
 @media (max-width: 768px) {
+    .page-hero {
+        padding: 3rem 1.25rem 2.5rem;
+    }
+
     .page-hero h1 {
         font-size: 2.2rem;
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .projects-section {
+        padding: 2.5rem 1.25rem;
     }
 
-    .project-image-wrapper {
-        height: 220px;
+    .projects-grid {
+        gap: 1.5rem;
+    }
+
+    .project-info {
+        padding: 1.25rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.25rem;
+    }
+
+    .cta-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .cta-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-hero h1 {
+        font-size: 1.85rem;
     }
 }
 </style>

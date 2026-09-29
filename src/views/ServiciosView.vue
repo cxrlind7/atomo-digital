@@ -104,8 +104,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css');
 
 .page-content {
     font-family: 'Poppins', sans-serif;
@@ -172,7 +170,7 @@ export default {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 2rem;
 }
 
@@ -281,7 +279,7 @@ export default {
 
 .process-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
     gap: 2rem;
     text-align: left;
 }
@@ -378,12 +376,50 @@ export default {
 }
 
 @media (max-width: 768px) {
+    .page-hero {
+        padding: 3rem 1.25rem 2.5rem;
+    }
+
     .page-hero h1 {
         font-size: 2.2rem;
     }
 
+    .services-section,
+    .process-section,
+    .cta-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .services-grid,
+    .process-steps {
+        gap: 1.25rem;
+    }
+
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+
     .process-container h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .process-step {
+        padding: 1.5rem;
+    }
+
+    .step-number {
+        font-size: 2.75rem;
+    }
+
+    .cta-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .page-hero h1 {
+        font-size: 1.85rem;
     }
 }
 </style>
